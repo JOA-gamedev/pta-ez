@@ -75,6 +75,7 @@
         <label><input type="radio" name="vak" value="Ltc" /> Ltc</label>
         <label><input type="radio" name="vak" value="Maw" /> Maw</label>
         <label><input type="radio" name="vak" value="Nat" /> Nat</label>
+        <label><input type="radio" name="vak" value="Netl" /> Netl</label>
         <label><input type="radio" name="vak" value="Schk" /> Schk</label>
         <label><input type="radio" name="vak" value="Wisa" /> Wisa</label>
         <label><input type="radio" name="vak" value="Wisb" /> Wisb</label>
@@ -103,120 +104,7 @@
       <tbody id="resultsBody"></tbody>
     </table>
 
-    <script>
-      function extractNetlData(text) {
-        const lines = text.split("\n");
-        const data = [];
-        let uniqueIdCounter = 1;
-
-        for (const line of lines) {
-          if (/^E VWO \d+/.test(line)) {
-            const columns = line.split(/\s+/);
-            if (columns.length >= 13) {
-              const vak = columns[5];
-              const afnamemoment = columns[6];
-              const jaarlaag = columns[4];
-              const omschrijving = columns.slice(9).join(" ");
-
-              // Assign a unique numerical identifier
-              const uniqueIdentifier = uniqueIdCounter++;
-
-              data.push({
-                Vak: vak,
-                Afnamemoment: afnamemoment,
-                jaarlaag: jaarlaag,
-                Omschrijving: omschrijving,
-                uniqueIdentifier: uniqueIdentifier,
-              });
-            }
-          }
-        }
-
-        return data;
-      }
-
-      function searchData() {
-        const formData = new FormData(document.getElementById("searchForm"));
-        const selectedYear = formData.get("year");
-        const afnamemomentInput = formData.get("afnamemoment");
-        const vakInput = formData.get("vak");
-        const fileInput = document.getElementById("fileInput");
-        const file = fileInput.files[0];
-
-        if (!file) {
-          alert("Please select a file.");
-          return;
-        }
-
-        const reader = new FileReader();
-
-        reader.onload = function (e) {
-          const fileContent = e.target.result;
-          const netlData = extractNetlData(fileContent);
-
-          const resultsBody = document.getElementById("resultsBody");
-          resultsBody.innerHTML = "";
-
-          const uniqueRows = {};
-
-          netlData.forEach((row) => {
-            const identifier = row.uniqueIdentifier;
-
-            if (
-              shouldIncludeRow(
-                row,
-                selectedYear,
-                afnamemomentInput,
-                vakInput,
-                uniqueRows
-              )
-            ) {
-              appendRowToTable(resultsBody, row, identifier);
-              uniqueRows[identifier] = true;
-            }
-          });
-        };
-
-        reader.readAsText(file);
-      }
-
-      function shouldIncludeRow(
-        row,
-        selectedYear,
-        afnamemomentInput,
-        vakInput,
-        uniqueRows
-      ) {
-        const identifier = row.uniqueIdentifier;
-
-        const isAllSelected = document.querySelector(
-          'input[name="vak"][value="All"]'
-        ).checked;
-
-        return (
-          (vakInput === "All" || row.Vak === vakInput) &&
-          (selectedYear === "All" || row.jaarlaag === selectedYear) &&
-          (afnamemomentInput === "" ||
-            row.Afnamemoment === afnamemomentInput) &&
-          !uniqueRows[identifier]
-        );
-      }
-
-      function appendRowToTable(tableBody, row, identifier) {
-        const newRow = tableBody.insertRow();
-
-        const vakCell = newRow.insertCell(0);
-        vakCell.textContent = row.Vak;
-
-        const afnamemomentCell = newRow.insertCell(1);
-        afnamemomentCell.textContent = row.Afnamemoment;
-
-        const omschrijvingCell = newRow.insertCell(2);
-        omschrijvingCell.textContent = row.Omschrijving;
-
-        const uniqueIdCell = newRow.insertCell(3);
-        uniqueIdCell.textContent = identifier;
-      }
+    <script src="script.js">
     </script>
   </body>
 </html>
