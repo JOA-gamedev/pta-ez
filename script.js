@@ -1,76 +1,82 @@
-// function extractNetlData(text) {
-//   const lines = text.split("\n");
-//   const data = [];
+let currentDataset = null; // Global variable to store the current dataset
 
-//   for (const line of lines) {
-//     if (/^E VWO \d+/.test(line)) {
-//       const columns = line.split(/\s+/);
-//       if (columns.length >= 13) {
-//         const vak = columns[5];
-//         const afnamemoment = columns[6];
-//         const jaarlaag = columns[4];
-//         const omschrijving = columns.slice(9).join(" ");
+async function loadSelectedDataset() {
+  const datasetSelector = document.getElementById("datasetSelector");
+  const selectedDataset = datasetSelector.value;
 
-//         data.push({
-//           Vak: vak,
-//           Afnamemoment: afnamemoment,
-//           jaarlaag: jaarlaag,
-//           Omschrijving: omschrijving,
-//         });
-//       }
-//     }
-//   }
+  if (selectedDataset) {
+    if (currentDataset === null) {
+      // Fetch the dataset only if it hasn't been fetched before
+      currentDataset = await readLocalJsonFile(selectedDataset);
+      console.log("fetch");
+    }
 
-//   return data;
-// }
+    if (currentDataset !== null) {
+      renderFilteredResults(currentDataset);
+    } else {
+      console.error("Failed to read JSON file.");
+    }
+  } else {
+    console.error("Please select a dataset.");
+  }
+}
 
-async function readExternalJsonFile() {
-  const filePath = "https://example.com/path/to/external/file.json"; // Replace with the actual URL
+async function readLocalJsonFile(datasetName) {
+  const baseUrl = "http://127.0.0.1:5500/datasets/";
+  const filePath = `${baseUrl}${datasetName}.json`;
+
   try {
     const response = await fetch(filePath);
+
     if (!response.ok) {
       throw new Error(
-        `Failed to fetch ${filePath}. Status: ${response.status}`
+        `Failed to fetch ${datasetName}.json. Status: ${response.status}`
       );
     }
 
     const jsonData = await response.json();
     return jsonData;
   } catch (error) {
-    console.error(`Error reading external JSON file: ${error.message}`);
+    console.error(`Error reading local JSON file: ${error.message}`);
     return null;
   }
 }
-
-async function searchData() {
+function renderFilteredResults(jsonData) {
   const formData = new FormData(document.getElementById("searchForm"));
   const selectedYear = formData.get("year");
   const afnamemomentInput = formData.get("afnamemoment");
-  const vakInput = formData.get("vak");
+  const selectedVakCheckboxes = formData.getAll("vak");
 
-  // Use readLocalJsonFile to read the JSON file
-  // Create a local URL for the file
-  const jsonData = await readExternalJsonFile();
-
-  if (jsonData !== null) {
+  if (jsonData) {
     const resultsBody = document.getElementById("resultsBody");
     resultsBody.innerHTML = "";
 
-    const uniqueRows = {};
-
     jsonData.forEach((row) => {
-      if (shouldIncludeRow(row, selectedYear, afnamemomentInput, vakInput)) {
+      if (
+        shouldIncludeRow(
+          row,
+          selectedYear,
+          afnamemomentInput,
+          selectedVakCheckboxes
+        )
+      ) {
         appendRowToTable(resultsBody, row);
       }
     });
   } else {
-    alert("Failed to read JSON file.");
+    alert("Invalid JSON data.");
   }
 }
 
-function shouldIncludeRow(row, selectedYear, afnamemomentInput, vakInput) {
+function shouldIncludeRow(
+  row,
+  selectedYear,
+  afnamemomentInput,
+  selectedVakCheckboxes
+) {
   return (
-    (vakInput === "All" || row.Vak === vakInput) &&
+    (selectedVakCheckboxes.includes("All") ||
+      selectedVakCheckboxes.includes(row.Vak)) &&
     (selectedYear === "All" || row.jaarlaag === selectedYear) &&
     (afnamemomentInput === "" || row.Afnamemoment === afnamemomentInput)
   );
