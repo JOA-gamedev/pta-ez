@@ -63,7 +63,9 @@ function havoOrVwo(selectedDataset) {
 }
 
 async function readLocalJsonFile(datasetName) {
+  // this is the link for the file if you host it on live server
   const baseUrl = "http://127.0.0.1:5500/datasets/";
+  // const baseUrl = "datasets/"
   const filePath = `${baseUrl}${datasetName}.json`;
 
   try {
