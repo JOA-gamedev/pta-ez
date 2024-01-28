@@ -1,222 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Netl Data</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 20px;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pta-ez</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f4f4f4;
+    }
 
-      table {
-        border-collapse: collapse;
-        width: 100%;
-      }
+    h1, h2 {
+      color: #333;
+    }
 
-      th,
-      td {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-      }
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
 
-      th {
-        background-color: #f2f2f2;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Netl Data</h1>
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
 
-    <form id="searchForm">
-      <label for="year">Select Year:</label>
-      <select id="year" name="year">
-        <option value="V4">VWO 4</option>
-        <option value="V5">VWO 5</option>
-        <option value="V6">VWO 6</option>
-      </select>
+    select, input[type="checkbox"] {
+      margin-right: 5px;
+    }
+    
+    select {
+      margin-bottom:10px;
+    }
 
-      <br />
+    fieldset {
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
 
-      <label for="afnamemoment">Select Afnamemoment:</label>
-      <select id="afnamemoment" name="afnamemoment">
-        <option value="">All</option>
-        <option value="TW1">TW1</option>
-        <option value="TW2">TW2</option>
-        <option value="TW3">TW3</option>
-        <option value="TW4">TW4</option>
-        <option value="P1">P1</option>
-        <option value="P2">P2</option>
-        <option value="P3">P3</option>
-        <option value="P4">P4</option>
-      </select>
+    legend {
+      font-weight: bold;
+    }
 
-      <br />
+    /* Use flexbox to create multiple columns */
+    .checkbox-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
 
-      <fieldset>
-        <legend>Select Vak:</legend>
-        <label><input type="radio" name="vak" value="All" checked="checked"/> All</label>
-        <label><input type="radio" name="vak" value="Ak" /> Ak</label>
-        <label><input type="radio" name="vak" value="Beco" /> Beco</label>
-        <label><input type="radio" name="vak" value="Biol" /> Bio</label>
-        <label><input type="radio" name="vak" value="Bsm" /> Bsm</label>
-        <label><input type="radio" name="vak" value="Dutl" /> Dutl</label>
-        <label><input type="radio" name="vak" value="Econ" /> Econ</label>
-        <label><input type="radio" name="vak" value="Entl" /> Entl</label>
-        <label><input type="radio" name="vak" value="Fatl" /> Fatl</label>
-        <label><input type="radio" name="vak" value="Ges" /> Ges</label>
-        <label><input type="radio" name="vak" value="Gtc" /> Gtc</label>
-        <label><input type="radio" name="vak" value="In" /> In</label>
-        <label><input type="radio" name="vak" value="Kubv" /> Kubv</label>
-        <label><input type="radio" name="vak" value="Kumu" /> Kumu</label>
-        <label><input type="radio" name="vak" value="Lo" /> Lo</label>
-        <label><input type="radio" name="vak" value="Ltc" /> Ltc</label>
-        <label><input type="radio" name="vak" value="Maw" /> Maw</label>
-        <label><input type="radio" name="vak" value="Nat" /> Nat</label>
-        <label><input type="radio" name="vak" value="Schk" /> Schk</label>
-        <label><input type="radio" name="vak" value="Wisa" /> Wisa</label>
-        <label><input type="radio" name="vak" value="Wisb" /> Wisb</label>
-        <label><input type="radio" name="vak" value="Wisc" /> Wisc</label>
-        <label><input type="radio" name="vak" value="Wisd" /> Wisd</label>
-      </fieldset>
+    .checkbox-container label {
+      flex-basis: calc(33.33% - 10px); /* 3 columns with margin between */
+      margin-bottom: 10px;
+    }
 
-      <br />
+    button {
+      background-color: #4285f4;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
 
-      <input type="file" id="fileInput" accept=".txt" />
+    button:hover {
+      background-color: #3367d6;
+    }
 
-      <button type="button" onclick="searchData()">Search</button>
-    </form>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Netl data</h1>
+
+  
+
+  <form id="searchForm">
+
+    <label for="datasetSelector" > Select Dataset:</label>
+    <select id="datasetSelector" onchange="loadSelectedDataset()">
+      <option value="" >select Dataset</option>
+      <option value="Vwo 5 23-24">Vwo 5 23/24</option>
+      <option value="Havo 4 23-24">Havo 4 23/24</option>
+      <!-- Add more options as needed -->
+    </select>
+    <label for="year"> Select year</label>
+    <select id="year" name="year" disabled="true">
+      <!-- <option value="All">All</option> -->
+      <!-- Options for VWO -->
+      <option value="V4" class="vwo-option">VWO 4</option>
+      <option value="V5" class="vwo-option">VWO 5</option>
+      <option value="V6" class="vwo-option">VWO 6</option>
+      <!-- Options for HAVO -->
+      <option value="H4" class="havo-option">Havo 4</option>
+      <option value="H5" class="havo-option">Havo 5</option>
+      <option value="H6" class="havo-option">Havo 6</option>
+    </select>
 
     <br />
 
-    <h2>Search Results:</h2>
-    <table id="resultsTable">
-      <thead>
-        <tr>
-          <th>Vak</th>
-          <th>Afnamemoment</th>
-          <th>Omschrijving</th>
-        </tr>
-      </thead>
-      <tbody id="resultsBody"></tbody>
-    </table>
+    <label for="afnamemoment">Select Afnamemoment:</label>
+    <select id="afnamemoment" name="afnamemoment">
+      <option value="">All</option>
+      <option value="TW1">TW1</option>
+      <option value="TW2">TW2</option>
+      <option value="TW3">TW3</option>
+      <option value="TW4">TW4</option>
+      <option value="P1">P1</option>
+      <option value="P2">P2</option>
+      <option value="P3">P3</option>
+      <option value="P4">P4</option>
+    </select>
 
-    <script>
-      function extractNetlData(text) {
-        const lines = text.split("\n");
-        const data = [];
-        let uniqueIdCounter = 1;
+    <br />
 
-        for (const line of lines) {
-          if (/^E VWO \d+/.test(line)) {
-            const columns = line.split(/\s+/);
-            if (columns.length >= 13) {
-              const vak = columns[5];
-              const afnamemoment = columns[6];
-              const jaarlaag = columns[4];
-              const omschrijving = columns.slice(9).join(" ");
+    <fieldset>
+      <legend>Select Vak:</legend>
+      <div class="checkbox-container">
+      <label><input type="checkbox" name="vak" value="All" checked="checked"/> All</label>
+        <label><input type="checkbox" name="vak" value="Ak" /> Ak</label>
+        <label><input type="checkbox" name="vak" value="Beco" /> Beco</label>
+        <label><input type="checkbox" name="vak" value="Biol" /> Bio</label>
+        <label><input type="checkbox" name="vak" value="Bsm" /> Bsm</label>
+        <label><input type="checkbox" name="vak" value="Dutl" /> Dutl</label>
+        <label><input type="checkbox" name="vak" value="Econ" /> Econ</label>
+        <label><input type="checkbox" name="vak" value="Entl" /> Entl</label>
+        <label><input type="checkbox" name="vak" value="Fatl" /> Fatl</label>
+        <label><input type="checkbox" name="vak" value="Ges" /> Ges</label>
+        <label><input type="checkbox" name="vak" value="Gtc" /> Gtc</label>
+        <label><input type="checkbox" name="vak" value="In" /> In</label>
+        <label><input type="checkbox" name="vak" value="Kubv" /> Kubv</label>
+        <label><input type="checkbox" name="vak" value="Kumu" /> Kumu</label>
+        <label><input type="checkbox" name="vak" value="Lo" /> Lo</label>
+        <label><input type="checkbox" name="vak" value="Ltc" /> Ltc</label>
+        <label><input type="checkbox" name="vak" value="Maw" /> Maw</label>
+        <label><input type="checkbox" name="vak" value="Nat" /> Nat</label>
+        <label><input type="checkbox" name="vak" value="Netl" /> Netl</label>
+        <label><input type="checkbox" name="vak" value="Schk" /> Schk</label>
+        <label><input type="checkbox" name="vak" value="Wisa" /> Wisa</label>
+        <label><input type="checkbox" name="vak" value="Wisb" /> Wisb</label>
+        <label><input type="checkbox" name="vak" value="Wisc" /> Wisc</label>
+        <label><input type="checkbox" name="vak" value="Wisd" /> Wisd</label>
+    </div>
+    </fieldset>
 
-              // Assign a unique numerical identifier
-              const uniqueIdentifier = uniqueIdCounter++;
+    <br />
 
-              data.push({
-                Vak: vak,
-                Afnamemoment: afnamemoment,
-                jaarlaag: jaarlaag,
-                Omschrijving: omschrijving,
-                uniqueIdentifier: uniqueIdentifier,
-              });
-            }
-          }
-        }
+    <button type="button" onclick="loadSelectedDataset()">Search</button>
+  </form>
 
-        return data;
-      }
+  <br />
 
-      function searchData() {
-        const formData = new FormData(document.getElementById("searchForm"));
-        const selectedYear = formData.get("year");
-        const afnamemomentInput = formData.get("afnamemoment");
-        const vakInput = formData.get("vak");
-        const fileInput = document.getElementById("fileInput");
-        const file = fileInput.files[0];
+  <h2>Search Results:</h2>
+  <table id="resultsTable">
+    <thead>
+      <tr>
+        <th>Vak</th>
+        <th>Afnamemoment</th>
+        <th>Omschrijving</th>
+      </tr>
+    </thead>
+    <tbody id="resultsBody"></tbody>
+  </table>
 
-        if (!file) {
-          alert("Please select a file.");
-          return;
-        }
-
-        const reader = new FileReader();
-
-        reader.onload = function (e) {
-          const fileContent = e.target.result;
-          const netlData = extractNetlData(fileContent);
-
-          const resultsBody = document.getElementById("resultsBody");
-          resultsBody.innerHTML = "";
-
-          const uniqueRows = {};
-
-          netlData.forEach((row) => {
-            const identifier = row.uniqueIdentifier;
-
-            if (
-              shouldIncludeRow(
-                row,
-                selectedYear,
-                afnamemomentInput,
-                vakInput,
-                uniqueRows
-              )
-            ) {
-              appendRowToTable(resultsBody, row, identifier);
-              uniqueRows[identifier] = true;
-            }
-          });
-        };
-
-        reader.readAsText(file);
-      }
-
-      function shouldIncludeRow(
-        row,
-        selectedYear,
-        afnamemomentInput,
-        vakInput,
-        uniqueRows
-      ) {
-        const identifier = row.uniqueIdentifier;
-
-        const isAllSelected = document.querySelector(
-          'input[name="vak"][value="All"]'
-        ).checked;
-
-        return (
-          (vakInput === "All" || row.Vak === vakInput) &&
-          (selectedYear === "All" || row.jaarlaag === selectedYear) &&
-          (afnamemomentInput === "" ||
-            row.Afnamemoment === afnamemomentInput) &&
-          !uniqueRows[identifier]
-        );
-      }
-
-      function appendRowToTable(tableBody, row, identifier) {
-        const newRow = tableBody.insertRow();
-
-        const vakCell = newRow.insertCell(0);
-        vakCell.textContent = row.Vak;
-
-        const afnamemomentCell = newRow.insertCell(1);
-        afnamemomentCell.textContent = row.Afnamemoment;
-
-        const omschrijvingCell = newRow.insertCell(2);
-        omschrijvingCell.textContent = row.Omschrijving;
-
-        const uniqueIdCell = newRow.insertCell(3);
-        uniqueIdCell.textContent = identifier;
-      }
-    </script>
-  </body>
+  <script src="script.js"></script>
+</body>
 </html>
