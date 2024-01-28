@@ -11,14 +11,19 @@ function extractNetlData(text, outputFilePath) {
         const vak = columns[5];
         const afnamemoment = columns[6];
         const jaarlaag = columns[4];
-        const omschrijving = columns.slice(9).join(" ");
-        let result = omschrijving.match(/^(.*?)\s[0-9]\s([0-9]*|H|-)(\s([0-9]*|-))?/);
+        const omschrijvingIN = columns.slice(9).join(" ");
+        let result = omschrijvingIN.match(/^(.*?)\s[0-9]\s([0-9]*|H|-)(\s([0-9]*|-))?/);
+        if (result && result[1]) {
+          omschrijving = result[1]
+        } else {
+          console.log("Pattern not found");
+        }
 
         data.push({
           Vak: vak,
           Afnamemoment: afnamemoment,
           jaarlaag: jaarlaag,
-          Omschrijving: result,
+          Omschrijving: omschrijving,
         });
       }
     }
