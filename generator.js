@@ -5,7 +5,7 @@ function extractNetlData(text, outputFilePath) {
   const data = [];
 
   for (const line of lines) {
-    if (/^E VWO \d+/.test(line)) {
+    if (/^E (VWO|HAVO) \d+/.test(line)) {
       const columns = line.split(/\s+/);
       if (columns.length >= 13) {
         const vak = columns[5];
@@ -37,7 +37,7 @@ console.log(`writing to ${process.argv[2]}.json`);
 // Example usage with reading input from a file:
 const fileName = process.argv[2];
 const inputFile = "input.txt"; // Replace with your input file path
-const outputFilePath = `${fileName}.json`;
+const outputFilePath = `datasets/${fileName}.json`;
 
 // Read the contents of the input file
 const inputText = fs.readFileSync(inputFile, "utf-8");
