@@ -12,12 +12,13 @@ function extractNetlData(text, outputFilePath) {
         const afnamemoment = columns[6];
         const jaarlaag = columns[4];
         const omschrijving = columns.slice(9).join(" ");
+        let result = omschrijving.match(/^(.*?)\s[0-9]\s([0-9]*|H|-)(\s([0-9]*|-))?/);
 
         data.push({
           Vak: vak,
           Afnamemoment: afnamemoment,
           jaarlaag: jaarlaag,
-          Omschrijving: omschrijving,
+          Omschrijving: result,
         });
       }
     }
