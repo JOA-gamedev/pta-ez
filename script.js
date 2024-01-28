@@ -1,23 +1,65 @@
 let currentDataset = null; // Global variable to store the current dataset
 
+let lastSelectedDataset = null; // Global variable to store the last selected dataset
+
 async function loadSelectedDataset() {
   const datasetSelector = document.getElementById("datasetSelector");
   const selectedDataset = datasetSelector.value;
 
   if (selectedDataset) {
-    if (currentDataset === null) {
-      // Fetch the dataset only if it hasn't been fetched before
-      currentDataset = await readLocalJsonFile(selectedDataset);
-      console.log("fetch");
-    }
+    document.getElementById("year").disabled = false;
 
-    if (currentDataset !== null) {
-      renderFilteredResults(currentDataset);
+    havoOrVwo(selectedDataset);
+    if (selectedDataset !== lastSelectedDataset) {
+      currentDataset = await readLocalJsonFile(selectedDataset);
+
+      if (currentDataset !== null) {
+        renderFilteredResults(currentDataset);
+        console.log(currentDataset);
+
+        // Update the last selected dataset
+        lastSelectedDataset = selectedDataset;
+      } else {
+        console.error("Failed to read JSON file.");
+      }
     } else {
-      console.error("Failed to read JSON file.");
+      // when the dataset is same as last time just render it again with possibly new filters
+      renderFilteredResults(currentDataset);
     }
   } else {
-    console.error("Please select a dataset.");
+    console.info("Please pick a dataset");
+  }
+}
+
+function havoOrVwo(selectedDataset) {
+  const niveau = selectedDataset.split(" ")[0]; // determine if the dataset is an havo pta or a vwo pta
+  const vwoOptions = document.getElementsByClassName("vwo-option");
+  const havoOptions = document.getElementsByClassName("havo-option");
+
+  if (niveau == "Havo") {
+    for (let option of vwoOptions) {
+      option.style.display = "none";
+    }
+    for (let option of havoOptions) {
+      option.style.display = "block";
+    }
+  }
+  if (niveau == "Vwo") {
+    for (let option of havoOptions) {
+      option.style.display = "none";
+    }
+    for (let option of vwoOptions) {
+      option.style.display = "block";
+    }
+  }
+
+  // Find the first visible option and set it as selected
+  const yearSelect = document.getElementById("year");
+  for (let i = 0; i < yearSelect.options.length; i++) {
+    if (yearSelect.options[i].style.display !== "none") {
+      yearSelect.selectedIndex = i;
+      break;
+    }
   }
 }
 
@@ -35,6 +77,7 @@ async function readLocalJsonFile(datasetName) {
     }
 
     const jsonData = await response.json();
+    console.log("read succsesful");
     return jsonData;
   } catch (error) {
     console.error(`Error reading local JSON file: ${error.message}`);

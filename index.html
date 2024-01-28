@@ -100,20 +100,25 @@
 
   <form id="searchForm">
 
-    <label for="datasetSelector">Select Dataset:</label>
-    <select id="datasetSelector">
-      <option value="output">Output Dataset</option>
-      <option value="otherDataset">Other Dataset</option>
+    <label for="datasetSelector" > Select Dataset:</label>
+    <select id="datasetSelector" onchange="loadSelectedDataset()">
+      <option value="" >select Dataset</option>
+      <option value="Vwo 5 23-24">Vwo 5 23/24</option>
+      <option value="Havo 4 23-24">Havo 4 23/24</option>
       <!-- Add more options as needed -->
     </select>
-    <label for="year">Select Year:</label>
-    <select id="year" name="year">
-      <option value="V4">VWO 4</option>
-      <option value="V5">VWO 5</option>
-      <option value="V6">VWO 6</option>
+    <label for="year"> Select year</label>
+    <select id="year" name="year" disabled="true">
+      <!-- <option value="All">All</option> -->
+      <!-- Options for VWO -->
+      <option value="V4" class="vwo-option">VWO 4</option>
+      <option value="V5" class="vwo-option">VWO 5</option>
+      <option value="V6" class="vwo-option">VWO 6</option>
+      <!-- Options for HAVO -->
+      <option value="H4" class="havo-option">Havo 4</option>
+      <option value="H5" class="havo-option">Havo 5</option>
+      <option value="H6" class="havo-option">Havo 6</option>
     </select>
-
-    
 
     <br />
 
