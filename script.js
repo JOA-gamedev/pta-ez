@@ -8,10 +8,9 @@ async function loadSelectedDataset() {
 
   if (selectedDataset) {
     document.getElementById("year").disabled = false;
-
-    havoOrVwo(selectedDataset);
     if (selectedDataset !== lastSelectedDataset) {
       currentDataset = await readLocalJsonFile(selectedDataset);
+      havoOrVwo(selectedDataset);
 
       if (currentDataset !== null) {
         renderFilteredResults(currentDataset);
