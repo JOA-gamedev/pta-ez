@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require("fs");
 
 function extractNetlData(text, outputFilePath) {
   const lines = text.split("\n");
@@ -27,16 +27,19 @@ function extractNetlData(text, outputFilePath) {
   const jsonData = JSON.stringify(data, null, 2); // The third parameter (2) is for indentation
 
   // Write the JSON data to a file
-  fs.writeFileSync(outputFilePath, jsonData, 'utf-8');
+  fs.writeFileSync(outputFilePath, jsonData, "utf-8");
 
   console.log(`JSON data has been written to ${outputFilePath}`);
 }
 
+const process = require("process");
+console.log(`writing to ${process.argv[2]}.json`);
 // Example usage with reading input from a file:
-const inputFile = "pta2.txt";  // Replace with your input file path
-const outputFilePath = "output.json";
+const fileName = process.argv[2];
+const inputFile = "input.txt"; // Replace with your input file path
+const outputFilePath = `${fileName}.json`;
 
 // Read the contents of the input file
-const inputText = fs.readFileSync(inputFile, 'utf-8');
+const inputText = fs.readFileSync(inputFile, "utf-8");
 
 extractNetlData(inputText, outputFilePath);
