@@ -2,6 +2,10 @@ let currentDataset = null; // Global variable to store the current dataset
 
 let lastSelectedDataset = null; // Global variable to store the last selected dataset
 
+let errout = document.getElementById("errout")
+const normalColor = "#495057"
+const errorColor = "red"
+
 async function loadSelectedDataset() {
   const datasetSelector = document.getElementById("datasetSelector");
   const selectedDataset = datasetSelector.value;
@@ -14,19 +18,20 @@ async function loadSelectedDataset() {
 
       if (currentDataset !== null) {
         renderFilteredResults(currentDataset);
-        console.log(currentDataset);
 
         // Update the last selected dataset
         lastSelectedDataset = selectedDataset;
       } else {
-        console.error("Failed to read JSON file.");
+        errout.innerHTML = "Failed to read JSON file."
+        errout.style.color = errorColor
       }
     } else {
       // when the dataset is same as last time just render it again with possibly new filters
       renderFilteredResults(currentDataset);
     }
   } else {
-    console.info("Please pick a dataset");
+    errout.innerText = "kies aub een PTA";
+    errout.style.color = errorColor
   }
 }
 
@@ -78,10 +83,12 @@ async function readLocalJsonFile(datasetName) {
     }
 
     const jsonData = await response.json();
-    console.log("read succsesful");
+    errout.innerText = "inlezen succesvol"
+    errout.style.color = normalColor
     return jsonData;
   } catch (error) {
-    console.error(`Error reading local JSON file: ${error.message}`);
+    errout.innerText = `Error reading local JSON file: ${error.message}`
+    errout.style.color = errorColor
     return null;
   }
 }
@@ -108,7 +115,8 @@ function renderFilteredResults(jsonData) {
       }
     });
   } else {
-    alert("Invalid JSON data.");
+    errout.innerHTML = "Invalid JSON data."
+    errout.style.color = errorColor
   }
 }
 
@@ -137,4 +145,41 @@ function appendRowToTable(tableBody, row) {
 
   const omschrijvingCell = newRow.insertCell(2);
   omschrijvingCell.textContent = row.Omschrijving;
+}
+
+
+// var wrapper = document.getElementById('cb-wrapper');
+// var checkboxes = wrapper.querySelectorAll('.some-checkbox');
+
+// wrapper.addEventListener('change', function(event) {
+//   var target = event;
+//   console.log(target)
+
+//   if (target.classList.contains('some-checkbox')) {
+//     if (target.checked) {
+//       if (target.classList.contains('some-others')) {
+//         Array.from(target.parentElement.children).forEach(function(sibling) {
+//           if (sibling !== target && sibling.classList.contains('some-checkbox')) {
+//             sibling.checked = false;
+//           }
+//         });
+//       } else {
+//         var someOthersSibling = target.parentElement.querySelector('.some-others');
+//         if (someOthersSibling) {
+//           someOthersSibling.checked = false;
+//         }
+//       }
+//     }
+//   }
+// });
+
+const checkboxes = document.querySelectorAll(".checkbox-container label input");
+const allCheckbox = document.querySelector(".some-others")
+
+for (let checkbox of checkboxes) {
+  if(checkbox !== allCheckbox) {
+    checkbox.addEventListener('change', ()=>{
+      allCheckbox.checked = false
+    });
+  }
 }
