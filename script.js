@@ -57,9 +57,8 @@ function updateFilters(data) {
 
   wrapper.innerHTML =
     '<label><input class="some-checkbox some-others" type="checkbox" name="vak" value="All" checked="checked"/> All</label>';
-  console.log(filters);
   filters.map((vak) => {
-    wrapper.innerHTML += `<label><input class="some-checkbox" type="checkbox" name="vak" value="${vak}" />${vak}</label>`;
+    wrapper.innerHTML += `<label><input class="some-checkbox" type="checkbox" onchange="uncheckAll()" name="vak" value="${vak}" />${vak}</label>`;
   });
 }
 
@@ -175,38 +174,7 @@ function appendRowToTable(tableBody, row) {
   omschrijvingCell.textContent = row.Omschrijving;
 }
 
-// var wrapper = document.getElementById('cb-wrapper');
-// var checkboxes = wrapper.querySelectorAll('.some-checkbox');
-
-// wrapper.addEventListener('change', function(event) {
-//   var target = event;
-//   console.log(target)
-
-//   if (target.classList.contains('some-checkbox')) {
-//     if (target.checked) {
-//       if (target.classList.contains('some-others')) {
-//         Array.from(target.parentElement.children).forEach(function(sibling) {
-//           if (sibling !== target && sibling.classList.contains('some-checkbox')) {
-//             sibling.checked = false;
-//           }
-//         });
-//       } else {
-//         var someOthersSibling = target.parentElement.querySelector('.some-others');
-//         if (someOthersSibling) {
-//           someOthersSibling.checked = false;
-//         }
-//       }
-//     }
-//   }
-// });
-
-const checkboxes = document.querySelectorAll(".checkbox-container label input");
-const allCheckbox = document.querySelector(".some-others");
-
-for (let checkbox of checkboxes) {
-  if (checkbox !== allCheckbox) {
-    checkbox.addEventListener("change", () => {
-      allCheckbox.checked = false;
-    });
-  }
+function uncheckAll() {
+  const allCheckbox = document.querySelector(".some-others");
+  allCheckbox.checked = false;
 }
