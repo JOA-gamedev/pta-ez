@@ -15,9 +15,14 @@ async function loadSelectedDataset() {
     if (selectedDataset !== lastSelectedDataset) {
       currentDataset = await readLocalJsonFile(selectedDataset);
       havoOrVwo(selectedDataset);
-
       if (currentDataset !== null) {
+
+        //from this point all we can say that thhe dataset is verified
+        //dataset is selected now render
         renderFilteredResults(currentDataset);
+
+        //update filters
+        getFilters(currentDataset)
 
         // Update the last selected dataset
         lastSelectedDataset = selectedDataset;
@@ -34,6 +39,28 @@ async function loadSelectedDataset() {
     errout.style.color = errorColor
   }
 }
+
+function getFilters(data) {
+  let filters = []
+  let lastFilter = ""
+  data.forEach((row)=>{
+    filter = row.Vak; //added for easier reading
+    if(filter !== lastFilter) {
+      filters += filter
+      lastFilter = filter
+    }
+  })
+  console.log(filters)
+  return filters;
+}
+
+function updateFilters(data) {
+  filters = getFilters(data)
+  wrapper = document.getElementById("cb-wrapper")
+  document.createElement()
+  //UNFINISHED
+}
+
 
 function havoOrVwo(selectedDataset) {
   const niveau = selectedDataset.split(" ")[0]; // determine if the dataset is an havo pta or a vwo pta
