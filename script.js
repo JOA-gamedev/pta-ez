@@ -2,9 +2,9 @@ let currentDataset = null; // Global variable to store the current dataset
 
 let lastSelectedDataset = null; // Global variable to store the last selected dataset
 
-let errout = document.getElementById("errout")
-const normalColor = "#495057"
-const errorColor = "red"
+let errout = document.getElementById("errout");
+const normalColor = "#495057";
+const errorColor = "red";
 
 async function loadSelectedDataset() {
   const datasetSelector = document.getElementById("datasetSelector");
@@ -16,19 +16,18 @@ async function loadSelectedDataset() {
       currentDataset = await readLocalJsonFile(selectedDataset);
       havoOrVwo(selectedDataset);
       if (currentDataset !== null) {
-
         //from this point all we can say that thhe dataset is verified
         //dataset is selected now render
         renderFilteredResults(currentDataset);
 
         //update filters
-        getFilters(currentDataset)
+        updateFilters(currentDataset);
 
         // Update the last selected dataset
         lastSelectedDataset = selectedDataset;
       } else {
-        errout.innerHTML = "Failed to read JSON file."
-        errout.style.color = errorColor
+        errout.innerHTML = "Failed to read JSON file.";
+        errout.style.color = errorColor;
       }
     } else {
       // when the dataset is same as last time just render it again with possibly new filters
@@ -36,31 +35,33 @@ async function loadSelectedDataset() {
     }
   } else {
     errout.innerText = "kies aub een PTA";
-    errout.style.color = errorColor
+    errout.style.color = errorColor;
   }
 }
 
-function getFilters(data) {
-  let filters = []
-  let lastFilter = ""
-  data.forEach((row)=>{
-    filter = row.Vak; //added for easier reading
-    if(filter !== lastFilter) {
-      filters += filter
-      lastFilter = filter
-    }
-  })
-  console.log(filters)
-  return filters;
-}
-
 function updateFilters(data) {
-  filters = getFilters(data)
-  wrapper = document.getElementById("cb-wrapper")
-  document.createElement()
-  //UNFINISHED
-}
+  // first read the vak from each row and put in an array
+  let filters = [];
+  let lastFilter = "";
+  data.forEach((row) => {
+    let filter = row.Vak; //added for easier reading
+    if (filter !== lastFilter) {
+      filters.push(filter);
+      lastFilter = filter;
+    }
+  });
 
+  //secondly place new filters in the DOM
+
+  wrapper = document.getElementById("cb-wrapper");
+
+  wrapper.innerHTML =
+    '<label><input class="some-checkbox some-others" type="checkbox" name="vak" value="All" checked="checked"/> All</label>';
+  console.log(filters);
+  filters.map((vak) => {
+    wrapper.innerHTML += `<label><input class="some-checkbox" type="checkbox" name="vak" value="${vak}" />${vak}</label>`;
+  });
+}
 
 function havoOrVwo(selectedDataset) {
   const niveau = selectedDataset.split(" ")[0]; // determine if the dataset is an havo pta or a vwo pta
@@ -110,12 +111,12 @@ async function readLocalJsonFile(datasetName) {
     }
 
     const jsonData = await response.json();
-    errout.innerText = "inlezen succesvol"
-    errout.style.color = normalColor
+    errout.innerText = "inlezen succesvol";
+    errout.style.color = normalColor;
     return jsonData;
   } catch (error) {
-    errout.innerText = `Error reading local JSON file: ${error.message}`
-    errout.style.color = errorColor
+    errout.innerText = `Error reading local JSON file: ${error.message}`;
+    errout.style.color = errorColor;
     return null;
   }
 }
@@ -142,8 +143,8 @@ function renderFilteredResults(jsonData) {
       }
     });
   } else {
-    errout.innerHTML = "Invalid JSON data."
-    errout.style.color = errorColor
+    errout.innerHTML = "Invalid JSON data.";
+    errout.style.color = errorColor;
   }
 }
 
@@ -174,7 +175,6 @@ function appendRowToTable(tableBody, row) {
   omschrijvingCell.textContent = row.Omschrijving;
 }
 
-
 // var wrapper = document.getElementById('cb-wrapper');
 // var checkboxes = wrapper.querySelectorAll('.some-checkbox');
 
@@ -201,12 +201,12 @@ function appendRowToTable(tableBody, row) {
 // });
 
 const checkboxes = document.querySelectorAll(".checkbox-container label input");
-const allCheckbox = document.querySelector(".some-others")
+const allCheckbox = document.querySelector(".some-others");
 
 for (let checkbox of checkboxes) {
-  if(checkbox !== allCheckbox) {
-    checkbox.addEventListener('change', ()=>{
-      allCheckbox.checked = false
+  if (checkbox !== allCheckbox) {
+    checkbox.addEventListener("change", () => {
+      allCheckbox.checked = false;
     });
   }
 }
