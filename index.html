@@ -3,100 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-  <title>pta-ez</title>
-  <style>
-    body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  background-color: #f4f4f4;
-    }
-
-    h1, h2 {
-      color: #333;
-    }
-
-    form {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    select, input[type="checkbox"] {
-      margin-right: 5px;
-    }
-    
-    select {
-      margin-bottom:10px;
-    }
-
-    fieldset {
-      border: 1px solid #ddd;
-      padding: 10px;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-
-    legend {
-      font-weight: bold;
-    }
-
-    /* Use flexbox to create multiple columns */
-    .checkbox-container {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .checkbox-container label {
-      flex-basis: calc(33.33% - 10px); /* 3 columns with margin between */
-      margin-bottom: 10px;
-    }
-
-    button {
-      background-color: #4285f4;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #3367d6;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-      background-color: #fff;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-    }
-
-    th, td {
-      border: 1px solid #ddd;
-      padding: 10px;
-      text-align: left;
-    }
-
-    th {
-      background-color: #f2f2f2;
-    }
-
-  </style>
-</head>
-<body>
-
-  <h1>Netl data</h1>
-=======
   <title>pta-ez v1.1</title>
   <meta name="description" content="ga ⚡-snel door de pta met pta-ez. zoeken per toetweek, periode, jaarlaag, en vak">
   <meta property="og:title" content="pta-ez">
@@ -109,166 +15,81 @@
     <h1>pta-ez v1.2</h1>
     <p>(gemaakt door Joachim ⚡)</p>
   </div>
->>>>>>> main
 
   
 
-  <form id="searchForm">
-<<<<<<< HEAD
-
-    <label for="datasetSelector" > Select Dataset:</label>
-    <select id="datasetSelector" onchange="loadSelectedDataset()">
-      <option value="" >select Dataset</option>
-=======
-    
-    <label for="datasetSelector" >Selecteer PTA:</label>
-    <select id="datasetSelector" onchange="loadSelectedDataset()">
-      <option value="" >kies een PTA</option>
->>>>>>> main
-      <option value="Vwo 5 23-24">Vwo 5 23/24</option>
-      <option value="Havo 4 23-24">Havo 4 23/24</option>
-      <!-- Add more options as needed -->
-    </select>
-<<<<<<< HEAD
-    <label for="year"> Select year</label>
-=======
-    <label for="year"> Selecteer leerjaar</label>
->>>>>>> main
-    <select id="year" name="year" disabled="true">
-      <!-- <option value="All">All</option> -->
-      <!-- Options for VWO -->
-      <option value="V4" class="vwo-option">VWO 4</option>
-      <option value="V5" class="vwo-option">VWO 5</option>
-      <option value="V6" class="vwo-option">VWO 6</option>
-      <!-- Options for HAVO -->
-      <option value="H4" class="havo-option">Havo 4</option>
-      <option value="H5" class="havo-option">Havo 5</option>
-<<<<<<< HEAD
-      <option value="H6" class="havo-option">Havo 6</option>
-=======
->>>>>>> main
-    </select>
+    <form id="searchForm">
+      <label for="year">Select Year:</label>
+      <select id="year" name="year">
+        <option value="V4">VWO 4</option>
+        <option value="V5">VWO 5</option>
+        <option value="V6">VWO 6</option>
+      </select>
 
     <br />
 
-<<<<<<< HEAD
-    <label for="afnamemoment">Select Afnamemoment:</label>
-    <select id="afnamemoment" name="afnamemoment">
-      <option value="">All</option>
-      <option value="TW1">TW1</option>
-      <option value="TW2">TW2</option>
-      <option value="TW3">TW3</option>
-      <option value="TW4">TW4</option>
-      <option value="P1">P1</option>
-      <option value="P2">P2</option>
-      <option value="P3">P3</option>
-      <option value="P4">P4</option>
-=======
-    <label for="afnamemoment">Selecteer een periode</label>
-    <select id="afnamemoment" name="afnamemoment">
-      <option value="">All</option>
-      <option value="TW1">Toetsweek 1</option>
-      <option value="TW2">Toetsweek 2</option>
-      <option value="TW3">Toetsweek 3</option>
-      <option value="TW4">Toetsweek 4</option>
-      <option value="P1">Periode 1</option>
-      <option value="P2">Periode 2</option>
-      <option value="P3">Periode 3</option>
-      <option value="P4">Periode 4</option>
->>>>>>> main
-    </select>
+      <label for="afnamemoment">Select Afnamemoment:</label>
+      <select id="afnamemoment" name="afnamemoment">
+        <option value="">All</option>
+        <option value="TW1">TW1</option>
+        <option value="TW2">TW2</option>
+        <option value="TW3">TW3</option>
+        <option value="TW4">TW4</option>
+        <option value="P1">P1</option>
+        <option value="P2">P2</option>
+        <option value="P3">P3</option>
+        <option value="P4">P4</option>
+      </select>
 
     <br />
 
-    <fieldset>
-<<<<<<< HEAD
-      <legend>Select Vak:</legend>
-      <div class="checkbox-container">
-      <label><input type="checkbox" name="vak" value="All" checked="checked"/> All</label>
-        <label><input type="checkbox" name="vak" value="Ak" /> Ak</label>
-        <label><input type="checkbox" name="vak" value="Beco" /> Beco</label>
-        <label><input type="checkbox" name="vak" value="Biol" /> Bio</label>
-        <label><input type="checkbox" name="vak" value="Bsm" /> Bsm</label>
-        <label><input type="checkbox" name="vak" value="Dutl" /> Dutl</label>
-        <label><input type="checkbox" name="vak" value="Econ" /> Econ</label>
-        <label><input type="checkbox" name="vak" value="Entl" /> Entl</label>
-        <label><input type="checkbox" name="vak" value="Fatl" /> Fatl</label>
-        <label><input type="checkbox" name="vak" value="Ges" /> Ges</label>
-        <label><input type="checkbox" name="vak" value="Gtc" /> Gtc</label>
-        <label><input type="checkbox" name="vak" value="In" /> In</label>
-        <label><input type="checkbox" name="vak" value="Kubv" /> Kubv</label>
-        <label><input type="checkbox" name="vak" value="Kumu" /> Kumu</label>
-        <label><input type="checkbox" name="vak" value="Lo" /> Lo</label>
-        <label><input type="checkbox" name="vak" value="Ltc" /> Ltc</label>
-        <label><input type="checkbox" name="vak" value="Maw" /> Maw</label>
-        <label><input type="checkbox" name="vak" value="Nat" /> Nat</label>
-        <label><input type="checkbox" name="vak" value="Netl" /> Netl</label>
-        <label><input type="checkbox" name="vak" value="Schk" /> Schk</label>
-        <label><input type="checkbox" name="vak" value="Wisa" /> Wisa</label>
-        <label><input type="checkbox" name="vak" value="Wisb" /> Wisb</label>
-        <label><input type="checkbox" name="vak" value="Wisc" /> Wisc</label>
-        <label><input type="checkbox" name="vak" value="Wisd" /> Wisd</label>
-=======
-      <legend>Selecteer vak(ken):</legend>
-      <div class="checkbox-container" id="cb-wrapper">
-        <label><input class="some-checkbox some-others" type="checkbox" name="vak" value="All" checked="checked"/> All</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Ak" /> Ak</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Beco" /> Beco</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Biol" /> Bio</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Bsm" /> Bsm</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Dutl" /> Dutl</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Econ" /> Econ</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Entl" /> Entl</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Fatl" /> Fatl</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Ges" /> Ges</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Gtc" /> Gtc</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="In" /> In</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Kubv" /> Kubv</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Kumu" /> Kumu</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Lo" /> Lo</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Ltc" /> Ltc</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Maw" /> Maw</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Nat" /> Nat</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Netl" /> Netl</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Schk" /> Schk</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Wisa" /> Wisa</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Wisb" /> Wisb</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Wisc" /> Wisc</label>
-        <label><input class="some-checkbox" type="checkbox" name="vak" value="Wisd" /> Wisd</label>
->>>>>>> main
-    </div>
-    </fieldset>
+      <fieldset>
+        <legend>Select Vak:</legend>
+        <label><input type="radio" name="vak" value="All" checked="checked"/> All</label>
+        <label><input type="radio" name="vak" value="Ak" /> Ak</label>
+        <label><input type="radio" name="vak" value="Beco" /> Beco</label>
+        <label><input type="radio" name="vak" value="Biol" /> Bio</label>
+        <label><input type="radio" name="vak" value="Bsm" /> Bsm</label>
+        <label><input type="radio" name="vak" value="Dutl" /> Dutl</label>
+        <label><input type="radio" name="vak" value="Econ" /> Econ</label>
+        <label><input type="radio" name="vak" value="Entl" /> Entl</label>
+        <label><input type="radio" name="vak" value="Fatl" /> Fatl</label>
+        <label><input type="radio" name="vak" value="Ges" /> Ges</label>
+        <label><input type="radio" name="vak" value="Gtc" /> Gtc</label>
+        <label><input type="radio" name="vak" value="In" /> In</label>
+        <label><input type="radio" name="vak" value="Kubv" /> Kubv</label>
+        <label><input type="radio" name="vak" value="Kumu" /> Kumu</label>
+        <label><input type="radio" name="vak" value="Lo" /> Lo</label>
+        <label><input type="radio" name="vak" value="Ltc" /> Ltc</label>
+        <label><input type="radio" name="vak" value="Maw" /> Maw</label>
+        <label><input type="radio" name="vak" value="Nat" /> Nat</label>
+        <label><input type="radio" name="vak" value="Schk" /> Schk</label>
+        <label><input type="radio" name="vak" value="Wisa" /> Wisa</label>
+        <label><input type="radio" name="vak" value="Wisb" /> Wisb</label>
+        <label><input type="radio" name="vak" value="Wisc" /> Wisc</label>
+        <label><input type="radio" name="vak" value="Wisd" /> Wisd</label>
+      </fieldset>
 
-    <br />
-<<<<<<< HEAD
+      <br />
 
-    <button type="button" onclick="loadSelectedDataset()">Search</button>
-=======
-    <div class="formFooter">
-      <button type="button" id="go-button" onclick="loadSelectedDataset()">zoek</button>
-      <p id="errout"></p>
-    </div>
+      <input type="file" id="fileInput" accept=".txt" />
 
->>>>>>> main
-  </form>
+      <button type="button" onclick="searchData()">Search</button>
+    </form>
 
   <br />
 
-<<<<<<< HEAD
-  <h2>Search Results:</h2>
-=======
-  <h2>Zoekresultaten:</h2>
->>>>>>> main
-  <table id="resultsTable">
-    <thead>
-      <tr>
-        <th>Vak</th>
-        <th>Afnamemoment</th>
-        <th>Omschrijving</th>
-      </tr>
-    </thead>
-    <tbody id="resultsBody"></tbody>
-  </table>
+    <h2>Search Results:</h2>
+    <table id="resultsTable">
+      <thead>
+        <tr>
+          <th>Vak</th>
+          <th>Afnamemoment</th>
+          <th>Omschrijving</th>
+        </tr>
+      </thead>
+      <tbody id="resultsBody"></tbody>
+    </table>
 
   <script src="script.js"></script>
 </body>

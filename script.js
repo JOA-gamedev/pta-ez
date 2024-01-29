@@ -2,13 +2,10 @@ let currentDataset = null; // Global variable to store the current dataset
 
 let lastSelectedDataset = null; // Global variable to store the last selected dataset
 
-<<<<<<< HEAD
-=======
 let errout = document.getElementById("errout")
 const normalColor = "#495057"
 const errorColor = "red"
 
->>>>>>> main
 async function loadSelectedDataset() {
   const datasetSelector = document.getElementById("datasetSelector");
   const selectedDataset = datasetSelector.value;
@@ -21,32 +18,20 @@ async function loadSelectedDataset() {
 
       if (currentDataset !== null) {
         renderFilteredResults(currentDataset);
-<<<<<<< HEAD
-        console.log(currentDataset);
-=======
->>>>>>> main
 
         // Update the last selected dataset
         lastSelectedDataset = selectedDataset;
       } else {
-<<<<<<< HEAD
-        console.error("Failed to read JSON file.");
-=======
         errout.innerHTML = "Failed to read JSON file."
         errout.style.color = errorColor
->>>>>>> main
       }
     } else {
       // when the dataset is same as last time just render it again with possibly new filters
       renderFilteredResults(currentDataset);
     }
   } else {
-<<<<<<< HEAD
-    console.info("Please pick a dataset");
-=======
     errout.innerText = "kies aub een PTA";
     errout.style.color = errorColor
->>>>>>> main
   }
 }
 
@@ -83,13 +68,9 @@ function havoOrVwo(selectedDataset) {
 }
 
 async function readLocalJsonFile(datasetName) {
-<<<<<<< HEAD
-  const baseUrl = "http://127.0.0.1:5500/datasets/";
-=======
   // this is the link for the file if you host it on live server
   const baseUrl = "http://127.0.0.1:5500/datasets/";
   // const baseUrl = "datasets/"
->>>>>>> main
   const filePath = `${baseUrl}${datasetName}.json`;
 
   try {
@@ -102,19 +83,12 @@ async function readLocalJsonFile(datasetName) {
     }
 
     const jsonData = await response.json();
-<<<<<<< HEAD
-    console.log("read succsesful");
-    return jsonData;
-  } catch (error) {
-    console.error(`Error reading local JSON file: ${error.message}`);
-=======
     errout.innerText = "inlezen succesvol"
     errout.style.color = normalColor
     return jsonData;
   } catch (error) {
     errout.innerText = `Error reading local JSON file: ${error.message}`
     errout.style.color = errorColor
->>>>>>> main
     return null;
   }
 }
@@ -141,12 +115,8 @@ function renderFilteredResults(jsonData) {
       }
     });
   } else {
-<<<<<<< HEAD
-    alert("Invalid JSON data.");
-=======
     errout.innerHTML = "Invalid JSON data."
     errout.style.color = errorColor
->>>>>>> main
   }
 }
 
@@ -176,8 +146,6 @@ function appendRowToTable(tableBody, row) {
   const omschrijvingCell = newRow.insertCell(2);
   omschrijvingCell.textContent = row.Omschrijving;
 }
-<<<<<<< HEAD
-=======
 
 
 // var wrapper = document.getElementById('cb-wrapper');
@@ -215,4 +183,3 @@ for (let checkbox of checkboxes) {
     });
   }
 }
->>>>>>> main
