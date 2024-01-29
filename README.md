@@ -1,4 +1,4 @@
-# PTA-EZ
+# PTA-EZ v1.3 
 pta-ez is een tool die ik heb gemaakt om supersnel en super ez door de pta te gaan van het jan van egmond lyceum.
 
 ik heb het gemaakt omdat iedereen weet dat de pta bekijken een van de meest langweilige activiteiten is.
