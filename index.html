@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
   <title>pta-ez</title>
   <style>
     body {
@@ -95,19 +96,44 @@
 <body>
 
   <h1>Netl data</h1>
+=======
+  <title>pta-ez v1.1</title>
+  <meta name="description" content="ga ⚡-snel door de pta met pta-ez. zoeken per toetweek, periode, jaarlaag, en vak">
+  <meta property="og:title" content="pta-ez">
+  <meta property="og:description" content="ga ⚡-snel door de pta">
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+  <body>
+  <div class="title">
+    <h1>pta-ez v1.2</h1>
+    <p>(gemaakt door Joachim ⚡)</p>
+  </div>
+>>>>>>> main
 
   
 
   <form id="searchForm">
+<<<<<<< HEAD
 
     <label for="datasetSelector" > Select Dataset:</label>
     <select id="datasetSelector" onchange="loadSelectedDataset()">
       <option value="" >select Dataset</option>
+=======
+    
+    <label for="datasetSelector" >Selecteer PTA:</label>
+    <select id="datasetSelector" onchange="loadSelectedDataset()">
+      <option value="" >kies een PTA</option>
+>>>>>>> main
       <option value="Vwo 5 23-24">Vwo 5 23/24</option>
       <option value="Havo 4 23-24">Havo 4 23/24</option>
       <!-- Add more options as needed -->
     </select>
+<<<<<<< HEAD
     <label for="year"> Select year</label>
+=======
+    <label for="year"> Selecteer leerjaar</label>
+>>>>>>> main
     <select id="year" name="year" disabled="true">
       <!-- <option value="All">All</option> -->
       <!-- Options for VWO -->
@@ -117,11 +143,15 @@
       <!-- Options for HAVO -->
       <option value="H4" class="havo-option">Havo 4</option>
       <option value="H5" class="havo-option">Havo 5</option>
+<<<<<<< HEAD
       <option value="H6" class="havo-option">Havo 6</option>
+=======
+>>>>>>> main
     </select>
 
     <br />
 
+<<<<<<< HEAD
     <label for="afnamemoment">Select Afnamemoment:</label>
     <select id="afnamemoment" name="afnamemoment">
       <option value="">All</option>
@@ -133,11 +163,25 @@
       <option value="P2">P2</option>
       <option value="P3">P3</option>
       <option value="P4">P4</option>
+=======
+    <label for="afnamemoment">Selecteer een periode</label>
+    <select id="afnamemoment" name="afnamemoment">
+      <option value="">All</option>
+      <option value="TW1">Toetsweek 1</option>
+      <option value="TW2">Toetsweek 2</option>
+      <option value="TW3">Toetsweek 3</option>
+      <option value="TW4">Toetsweek 4</option>
+      <option value="P1">Periode 1</option>
+      <option value="P2">Periode 2</option>
+      <option value="P3">Periode 3</option>
+      <option value="P4">Periode 4</option>
+>>>>>>> main
     </select>
 
     <br />
 
     <fieldset>
+<<<<<<< HEAD
       <legend>Select Vak:</legend>
       <div class="checkbox-container">
       <label><input type="checkbox" name="vak" value="All" checked="checked"/> All</label>
@@ -164,17 +208,57 @@
         <label><input type="checkbox" name="vak" value="Wisb" /> Wisb</label>
         <label><input type="checkbox" name="vak" value="Wisc" /> Wisc</label>
         <label><input type="checkbox" name="vak" value="Wisd" /> Wisd</label>
+=======
+      <legend>Selecteer vak(ken):</legend>
+      <div class="checkbox-container" id="cb-wrapper">
+        <label><input class="some-checkbox some-others" type="checkbox" name="vak" value="All" checked="checked"/> All</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Ak" /> Ak</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Beco" /> Beco</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Biol" /> Bio</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Bsm" /> Bsm</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Dutl" /> Dutl</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Econ" /> Econ</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Entl" /> Entl</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Fatl" /> Fatl</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Ges" /> Ges</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Gtc" /> Gtc</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="In" /> In</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Kubv" /> Kubv</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Kumu" /> Kumu</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Lo" /> Lo</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Ltc" /> Ltc</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Maw" /> Maw</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Nat" /> Nat</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Netl" /> Netl</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Schk" /> Schk</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Wisa" /> Wisa</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Wisb" /> Wisb</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Wisc" /> Wisc</label>
+        <label><input class="some-checkbox" type="checkbox" name="vak" value="Wisd" /> Wisd</label>
+>>>>>>> main
     </div>
     </fieldset>
 
     <br />
+<<<<<<< HEAD
 
     <button type="button" onclick="loadSelectedDataset()">Search</button>
+=======
+    <div class="formFooter">
+      <button type="button" id="go-button" onclick="loadSelectedDataset()">zoek</button>
+      <p id="errout"></p>
+    </div>
+
+>>>>>>> main
   </form>
 
   <br />
 
+<<<<<<< HEAD
   <h2>Search Results:</h2>
+=======
+  <h2>Zoekresultaten:</h2>
+>>>>>>> main
   <table id="resultsTable">
     <thead>
       <tr>
