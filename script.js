@@ -56,7 +56,7 @@ function updateFilters(data) {
   wrapper = document.getElementById("cb-wrapper");
 
   wrapper.innerHTML =
-    '<label><input class="some-checkbox some-others" type="checkbox" name="vak" value="All" checked="checked"/> All</label>';
+    '<label><input class="some-checkbox some-others" type="checkbox" name="vak" value="All" checked="checked"/>All</label>';
   filters.map((vak) => {
     wrapper.innerHTML += `<label><input class="some-checkbox" type="checkbox" onchange="uncheckAll()" name="vak" value="${vak}" />${vak}</label>`;
   });
