@@ -178,3 +178,16 @@ function uncheckAll() {
   const allCheckbox = document.querySelector(".some-others");
   allCheckbox.checked = false;
 }
+
+
+// popup
+
+function openPopup() {
+  document.getElementById('popup').style.display = 'block';
+}
+
+function closePopup() {
+  document.getElementById('popup').style.display = 'none';
+}
+
+openPopup()
